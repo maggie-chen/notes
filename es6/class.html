@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // ES5
+    // 构造函数
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // 原型方法
+    Person.prototype.getName = function () {
+        return this.name
+    }
+
+    // ES6
+    class Person {
+        constructor(name, age) {  // 构造函数
+            this.name = name;
+            this.age = age;
+        }
+
+        getName() {   // 这种写法表示将方法添加到原型中
+            return this.name
+        }
+
+        static a = 20;  // 等同于 Person.a = 20
+
+        c = 20;   // 表示在构造函数中添加属性 在构造函数中等同于 this.c = 20
+
+        // 箭头函数的写法表示在构造函数中添加方法，在构造函数中等同于this.getAge = function() {}
+        getAge = () => this.age
+
+    }
+    // extends
+    // Student类继承Person类
+    class Student extends Person {
+        constructor(name, age, gender, classes) {
+            //super方法，它表示构造函数的继承，与ES5中利用call/apply继承构造函数是一样的功能。
+            //es5  Person.call(this);
+            super(name, age); 
+            this.gender = gender;
+            this.classes = classes;
+        }
+
+        getGender() {
+            return this.gender;
+        }
+    }
+</script>
+
+</html>

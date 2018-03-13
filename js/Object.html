@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // JavaScript中本地对象、内置对象和宿主对象
+    // 1.宿主对象
+    // 由ECMAScript实现的宿主环境提供的对象，可以理解为：浏览器提供的对象。所有的BOM和DOM都是宿主对象。
+    // 2.本地对象
+    // 独立于宿主环境的 ECMAScript 实现提供的对象
+    // Object、Function、Array、String、Boolean、Number、Date、RegExp、Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError
+    // 3.内置对象
+    // 内置对象是本地对象的一种。而其包含的两种对象，即 Global 和 Math。
+</script>
+<script>
+    // defineProperty
+    var o = {};
+    Object.defineProperty(o, "a", {
+        value: 37,
+        writable: true, //当且仅当该属性的writable为true时，value才能被赋值运算符改变默认为 false。
+        enumerable: true, //当且仅当该属性的enumerable为true时，该属性才能够出现在对象的枚举属性中。默认为 false。
+        configurable: true//当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。   
+    });
+    var a = {}
+    Object.defineProperty(a, "b", {
+        set: function (newValue) {
+            console.log("你要赋值给我,我的新值是"+newValue)
+        },
+        get: function () {
+            console.log("你取我的值")
+            return 2 //注意这里，我硬编码返回2
+        }
+    })
+    a.b = 1 //打印 你要赋值给我,我的新值是1
+    console.log(a.b)    //打印 你取我的值
+    //打印 2   
+    // 在 descriptor 中不能 同时设置访问器(get 和 set) 和 wriable 或 value，否则会错，就是说想用(get 和 set) ，就不能用（wriable 或 value中的任何一个）
+
+
+    console.log(o);
+</script>
+
+</html>

@@ -11,6 +11,21 @@
 	<script type="text/javascript">
 		//继承  
 		//构造函数的继承  call apply
+		
+		// 简单案例
+		var a = 10;
+		var obj = {
+			a: 20
+		}
+
+		function fn() {
+			console.log(this.a);
+		}
+
+		fn(); // 10
+		fn.call(obj); // 20
+		
+		// 复杂案例
 		function animal(type) {
 			this.type = type
 			this.behavior = function() {

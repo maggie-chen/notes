@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 减少页面加载时间的方法
+    // 1.压缩你的图片，合理选择你的图片格式，这个是一定的，我们当时就碰到一个小图片几m，每天检测到超多的流量
+    // 2.网址后面加上“/”
+    // 3.合理压缩，缓存你的静态资源
+
+
+    // 缓存
+
+    // 如何清除缓存
+    // 加版本号，meta标签<META HTTP-EQUIV="Pragma" CONTENT="no-cache">和http header Cache-Control:no-cache
+
+    // 设置缓存 : 优化加载速度，减少用户请求的带宽和减少服务器压力。
+    // 浏览器缓存: Cache-Control --public：响应被缓存，并且在多用户间共享。
+    // HTML5 Application Cache  -- manifest文件
+    // LocalStorage  更适合关键的业务数据而非静态资源。
+    // CDN缓存  客户端浏览器先检查是否有本地缓存是否过期，如果过期，则向CDN边缘节点发起请求，CDN边缘节点会检测用户请求数据的缓存是否过期，如果没有过期，则直接响应用户请求，此时一个完成HTTP请求结束；如果数据已经过期，那么CDN还需要向源站发出回源请求。
+</script> 
+</html>

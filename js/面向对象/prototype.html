@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // hasOwnProperty
+    // hasOwnProperty() 方法会返回一个布尔值，指示对象(自身!)属性中是否具有指定的属性 
+    o = new Object();
+        o.prop = 'exists';
+        o.hasOwnProperty('prop');             // 返回 true
+        o.hasOwnProperty('toString');         // 返回 false
+        o.hasOwnProperty('hasOwnProperty');   // 返回 false
+
+</script>
+</html>
