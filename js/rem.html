@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 淘宝flexible rem
+    // 动态设置viewport属性
+    // device - width = 设备的物理分辨率 / (devicePixelRatio（设备像素比，dpr） * scale)
+    // 这么做目的当然是为了保证页面的大小与设计稿保持一致了，比如设计稿如果是750的横向分辨率，那么实际页面的device - width，以iphone6来说，也等于750，这样的话设计稿上标注的尺寸只要除以某一个值就能够转换为rem了。通过js设置viewport的方法如下：
+    // var scale = 1 / devicePixelRatio;
+    // document.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+    // 淘宝布局的第二个要点，就是html元素的font - size的计算公式，font - size = deviceWidth / 10：他们用的设计稿是750的，所以html的font - size就是75，如果某个元素时150px的宽，换算成rem就是150 / 75 = 2rem
+    // 淘宝也设置了一个临界点，当设备竖着时横向物理分辨率大于1080时，html的font - size就不会变化了，原因也是一样的，分辨率已经可以去访问电脑版页面了。
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-router</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 路由中有三个基本的概念 route, routes, router。
+
+    //1,r oute，它是一条路由，由这个英文单词也可以看出来，它是单数， Home按钮 => home内容， 这是一条route。
+
+    //2, routes 是一组路由，把上面的每一条路由组合起来，形成一个数组。[{ home 按钮 => home内容 }， { about按钮 => about 内容 }]
+
+    //3, router 是一个机制，相当于一个管理者，它来管理路由。因为routes 只是定义了一组路由。
+
+    //4, 客户端中的路由，实际上就是dom 元素的显示和隐藏。当页面中显示home 内容的时候，about 中的内容全部隐藏，反之也是一样。
+    //客户端路由有两种实现方式：基于hash 和基于html5 history api.
+    //在vue中实现路由还是相对简单的。因为我们页面中所有内容都是组件化的，我们只要把路径和组件对应起来就可以了，然后在页面中把组件渲染出来。
+
+
+    // vue-router
+    //两个标签<router-link> 和<router-view> ,<router-link> 还有一个非常重要的属性 to，定义点击之后，要到哪里去
+    // 当 <router-link> 对应的路由匹配成功，将自动设置 class 属性值 .router-link-active。
+    
+    //首先要定义route, 一条路由的实现。它是一个对象，由两个部分组成： path和component.  path 指路径，component 指的是组件。
+    // 如：{path:’/home’, component: home}
+    // 两条以上路由，组成一个routes: 
+    const routes = [
+        { path: '/home', component: Home },
+        { path: '/about', component: About }
+    ]
+
+    // 最后创建router 对路由进行管理，它是由构造函数 new vueRouter() 创建，接受routes 参数。
+    const router = new VueRouter({
+        routes // routes: routes 的简写
+    })
+
+    // 配置完成后，把router 实例注入到 vue 根实例中,就可以使用路由了
+    const app = new Vue({
+        router
+    }).$mount('#app')
+
+    // 如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)
+
+    // 通过注入路由，我们可以用 this.$router 来访问它，就像在任何组件里用 this.$router 访问当前路由一样。
+</script>
+
+</html>

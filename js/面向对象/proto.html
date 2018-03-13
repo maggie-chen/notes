@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		function Parent() {
+			this.a = 1;
+			this.b = 2;
+			this.c = 3;
+		}
+
+		function Child() {
+			this.d = 4;
+			this.e = 5;
+			this.Symbol = 6;
+			//	Parent.call(this,null);
+		}
+		Child.prototype.getName = function() {
+			console.log(this.a);
+		}
+		var cProtoObj = Child.prototype; //Child原型对象  ，一般不这么写
+
+		var a1 = new Child(); //new出来的对象都有个__proto__属性，指向原型对象，通过这个属性a1能访问原型对象的方法。因此，原型对象的方法与属性就变成了共有方法与属性。
+
+//		console.log(a1.__proto__ == cProtoObj); //true
+
+		//要是让child的实例对象访问到parent属性，也就是意味着a1.__proto__ = new Parent();
+
+		var b1 = new Parent();
+		a1.__proto__ = b1;
+
+//		console.log(a1.a);
+	</script>
+
+	<script type="text/javascript">
+		const parent = {
+			a: 1,
+			b: 2,
+			c: 3
+		};
+		const child = {
+			d: 4,
+			e: 5,
+			[Symbol()]: 6
+		};
+		child.__proto__ = parent;
+		console.log(child);
+		for (var item in child) {
+			console.log(item)
+		}
+	</script>
+
+</html>

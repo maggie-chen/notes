@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//什么是面向对象
+		//对象的含义是无序的集合，其属性可以包含基本值、对象或者函数。
+		//那就是类的概念，而通过类可以创建任意多个具有相同属性和方法的对象
+		//在js中就是利用构造函数的形式
+
+		//什么是构造函数
+		//构造函数也是一个函数，和普通函数的唯一区别，就是他们调用的方式不同，必须用 new 运算符来调用。
+
+		//new做了什么
+		//声明一个中间对象；将该中间对象的原型指向构造函数的原型；将构造函数的this，指向该中间对象；返回该中间对象，即返回实例对象。
+
+		//什么是原型
+		//我们创建的每一个函数，都可以有一个prototype属性，该属性指向一个对象。这个对象，就是我们这里说的原型。
+		//当我们在创建对象时，可以根据自己的需求，选择性的将一些属性和方法通过prototype属性，挂载在原型对象上。
+
+		//而每一个new出来的实例，都有一个__proto__属性，该属性指向构造函数的原型对象，通过这个属性，让实例对象也能够访问原型对象上的方法。因此，当所有的实例都能够通过__proto__访问到原型对象时，原型对象的方法与属性就变成了共有方法与属性。
+
+		//当我们访问实例对象中的属性或者方法时，会优先访问实例对象自身的属性和方法。
+		function Person(name, age) {
+			this.name = name;
+			this.age = age;
+			this.getName = function() {
+				console.log('this is constructor.');
+			}
+		}
+
+		Person.prototype.getName = function() {
+			return this.name;
+		}
+
+		var p1 = new Person('tim', 10);
+
+		p1.getName(); // this is constructor.
+
+		//简单写法
+		function Person1() {}
+
+		Person1.prototype = {
+			constructor: Person1,
+			getName: function() {},
+			getAge: function() {},
+			sayHello: function() {}
+		}
+		
+		//什么是原型链
+		//原型对象其实也是普通的对象。几乎所有的对象都可能是原型对象，也可能是实例对象，而且还可以同时是原型对象与实例对象。这样的一个对象，正是构成原型链的一个节点。他们串联起来就是原型链
+		//基于原型链的特性，我们可以很轻松的实现继承。
+		
+	</script>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//继承  
+		//构造函数的继承  call apply
+		function animal(type) {
+			this.type = type
+			this.behavior = function() {
+				console.log(this.type + " is running")
+			}
+		}
+		animal.prototype.action = function() {
+			console.log("running")
+		}
+
+		function cat(name, type) {
+			this.name = name
+			animal.call(this, type)
+		}
+
+		cat.prototype = new animal();
+		console.log(new cat('wsscat', 'cute'));
+	</script>
+
+</html>

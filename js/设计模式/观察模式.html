@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//它主要有两个角色组成：
+		//目标对象：作为一对多关系中的一，可以用来管理观察者的增加和删除
+		//观察者对象：观察目标对象，一旦目标发生改变则做出相应的反应
+		function Subject() {
+			this.observers = [];
+		}
+		Subject.prototype = {
+			constructor: Subject,
+			subscribe: function(fn) {
+				this.observers.push(fn);
+				return this;
+			},
+			unsubscribe: function(fn) {
+				this.observers = this.observers.filter(function(item) {
+					if(item !== fn) {
+						return item;
+					}
+				});
+				return this;
+			},
+			fire: function(data, context) {
+				this.observers.forEach(function(item) {
+					item.call(context, data);//call详见原型继承 
+				});
+				return this;
+			}
+		};
+
+		function SideView() {}
+		SideView.prototype.render = function(data) {
+			console.log("Side data:" + data);
+		}
+
+		function MainView() {}
+		MainView.prototype.render = function(data) {
+			console.log("MainView data:" + data);
+		}
+		var subject = new Subject();
+		var sideView = new SideView();
+		var mainView = new MainView();
+
+		subject.subscribe(sideView.render);
+		subject.subscribe(mainView.render);
+		subject.fire("test");
+	</script>
+
+</html>

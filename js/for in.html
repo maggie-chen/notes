@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//因为 for...in 循环会遍历原型链所有的可枚举属性，造成不必要的循环。
+		//for...in循环：会遍历对象自身的属性，以及原型属性，只遍历可枚举(不包括 enumerable为 false )属性。像 Array 和 Object 使用内置构造函数所创建的对象都会继承自 Object.prototype 和 String.prototype 的不可枚举属性;
+		//还可以用 Object.key() 获取，Object.getOwnPropertyNames() 以及 Reflect.ownKeys()也可以获取
+		const parent = {
+			a: 1,
+			b: 2,
+			c: 3
+		};
+		const child = {
+			d: 4,
+			e: 5,
+			[Symbol()]: 6
+		};
+		child.__proto__ = parent;
+		Object.defineProperty(child, "d", {
+			enumerable: false
+		}); // d不可枚举
+
+		for(var attr in child) {
+			console.log("for...in:", attr); // a,b,c,e
+		}
+		console.log("Object.keys:", Object.keys(child)); // [ 'e' ]
+		console.log("Object.getOwnPropertyNames:", Object.getOwnPropertyNames(child)); // [ 'd', 'e' ]
+		console.log("Reflect.ownKeys:", Reflect.ownKeys(child)); // [ 'd', 'e', Symbol() ]
+
+		function parseString(str, obj) {
+			//			Object.keys(obj).forEach(key => {
+			//				str = str.replace(new RegExp(`{{${key}}}`, 'g'), obj[key]);
+			//			});
+			Object.keys(obj).forEach(function(key) {
+				str = str.replace(new RegExp('{{' + key + '}}', 'g'), obj[key]);
+			})
+			return str;
+		}
+		const str = "{{name}}很厉name害{{name}}，才{{age}}岁";
+		const obj = {
+			name: "jawil",
+			age: "15"
+		};
+
+		function render(template, context) {
+			template = template.replace(/\{\{(.*?)\}\}/g, function(match,key){
+				console.log(match);
+				return context[key];
+			});
+			return template;
+//			return template.replace(/\{\{(.*?)\}\}/g, (match, key) => context[key]);/
+		}
+		console.log(parseString(str, obj));
+		console.log(render(str, obj));
+	</script>
+
+</html>

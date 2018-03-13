@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js事件</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //事件通常与函数配合使用，这样就可以通过发生的事件来驱动函数执行。
+    //事件是可以被 JavaScript 侦测到的行为。例如onclick onload等等
+
+    //1.描述js里事件的三个阶段 (事件流)
+    //捕获、处于目标阶段、冒泡阶段
+
+    //2.js事件处理程序
+    //HTML事件处理程序 <input type="button" value="Click Here" onclick="alert('Clicked!');" />
+    //通过JS将函数赋值给对象btn.onclick = function() {alert(this.id);}   
+    //w3c addEventListener(eventName,function(e){}, false);  Boolean:捕获或者冒泡,默认是false冒泡
+    //ie  attachEvent(onEventName,function(){var e = window.event; }); 在事件前面需要加on
+
+    //3.js事件之事件对象
+    //会产生一个event对象。可以访问当前的target等等
+
+    //4.js事件委托、代理
+    //事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。
+    //将子元素的事件委托给父元素，我们可以将事件绑定在父元素上，让他来判断子元素的情况并决定要不要执行该事件。
+    //优点，如碰到为多个相同类型dom绑定事件时，减少内存占有，将事件绑定于父元素。减少与dom的交互次数，提高性能
+
+</script>
+</html>
