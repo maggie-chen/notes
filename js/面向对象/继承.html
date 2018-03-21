@@ -11,7 +11,7 @@
 	<script type="text/javascript">
 		//继承  
 		//构造函数的继承  call apply
-		
+
 		// 简单案例
 		var a = 10;
 		var obj = {
@@ -24,7 +24,7 @@
 
 		fn(); // 10
 		fn.call(obj); // 20
-		
+
 		// 复杂案例
 		function animal(type) {
 			this.type = type
@@ -47,31 +47,61 @@
 	<script type="text/javascript">
 		//需求：b想继承a，但是不想打印a中的log，同时想改写b继承过来的方法，并且不改变的a
 		//生成一个中间对象c
-		function Aa(){
+		function Aa() {
 			console.log('aa被执行');
 			this.name = 'aa';
 		}
-		Aa.prototype.getName = function(){
+		Aa.prototype.getName = function() {
 			console.log(this.name);
 		}
-		function Bb(){
+
+		function Bb() {
 			console.log('bb被执行');
 			this.name = 'bb';
 		}
-		function Cc(){
+
+		function Cc() {
 			this.name = 'cc';
-		} 
+		}
 		Cc.prototype = Aa.prototype;
 		Bb.prototype = new Cc();
 		var bb = new Bb();
-		Bb.prototype.getName = function(){
+		Bb.prototype.getName = function() {
 			console.log('我被改写了');
 		};
-		
+
 		bb.getName();
-//		var aa = new Aa();
-//		aa.getName();
-//		console.log(bb);
+		//		var aa = new Aa();
+		//		aa.getName();
+		//		console.log(bb);
+	</script>
+	<script type="text/javascript">
+		//几种继承方式
+		//1.原型继承
+		function Super() {
+			this.name = "AA"
+		}
+		Super.prototype.getName = function() {
+			console.log(this.name)
+		};
+		//让子类的原型指向 超类的一个实例，就会拥有 实例私有的属性。通过 实例的__proto__找到超的原型，里面的属性和方法一样可以找到。
+		//即 var sub=new Sub(); sub拥有Super的私有和原型上的属性和方法。
+		//核心理念: 通过 增加sub子类和super超类之间的原型链 链接，让 Sub的实例能找到Super的原型和私有属性，
+		function Sub() {
+
+		}
+		Sub.prototype = new Super();
+		var sub = new Sub();
+		console.log(sub);
+		sub.__proto__.name = 'BB';
+		sub.getName();
+		console.log(Sub.prototype);
+		var sub1 = new Sub();
+		console.log(sub1.name);
+		console.dir(sub.__proto__);
+		console.log(sub.constructor)
+		//2.call继承
+
 	</script>
 
 </html>
