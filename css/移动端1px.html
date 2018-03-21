@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*1*/
+			
+			.border {
+				border: 1px solid #999
+			}
+			
+			@media screen and (-webkit-min-device-pixel-ratio: 2) {
+				.border {
+					border: 0.5px solid #999
+				}
+			}
+			
+			@media screen and (-webkit-min-device-pixel-ratio: 3) {
+				.border {
+					border: 0.333333px solid #999
+				}
+			}
+			/*2*/
+			
+			.radius-border {
+				position: relative;
+			}
+			
+			@media screen and (-webkit-min-device-pixel-ratio: 2) {
+				.radius-border:before {
+					content: "";
+					pointer-events: none;
+					/* 防止点击触发 */
+					box-sizing: border-box;
+					position: absolute;
+					width: 200%;
+					height: 200%;
+					left: 0;
+					top: 0;
+					border-radius: 8px;
+					border: 1px solid #999;
+					-webkit-transform(scale(0.5));
+					-webkit-transform-origin: 0 0;
+					transform(scale(0.5));
+					transform-origin: 0 0;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//移动端 window 对象有个 devicePixelRatio 属性, 它表示设备物理像素和 css 像素的比例, 在 retina 屏的 iphone 手机上, 这个值为 2 或 3, css 里写的 1px 长度映射到物理像素上就有 2px 或 3px 那么长.
+		//常用解决方案
+		//1.IOS8下已经支持带小数的px值, media query 对应 devicePixelRatio 有个查询值 -webkit-min-device-pixel-ratio, css可以写成这样
+		//2.:before, :after 与 transform 构建1个伪元素, 将它的长宽放大到2倍, 边框宽度设置为1px, 再以transform缩放到50%.
+		//3.flexible.js  动态计算viewport
+	</script>
+
+</html>

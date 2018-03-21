@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//（1）实现js文件的异步加载，避免网页失去响应；
+		//（2）管理模块之间的依赖性，便于代码的编写和维护。
+		//<script src="js/require.js" data-main="js/main"><\/script>
+
+		//main 写法1
+		require(['moduleA', 'moduleB', 'moduleC'], function(moduleA, moduleB, moduleC) {　　　　 // some code here
+			　　});
+		//require()异步加载moduleA，moduleB和moduleC，浏览器不会失去响应；它指定的回调函数，只有前面的模块都加载成功后，才会运行，解决了依赖性的问题。
+
+		//main 写法2
+		require.config({
+			paths: {
+				"jquery": "jquery.min",
+				　　　　　　"underscore": "underscore.min",
+				　　　　　　"backbone": "backbone.min"
+			}
+		});
+
+		//require.js加载的模块，采用AMD规范。也就是说，模块必须按照AMD的规定来写。
+		// math.js
+		define(function() {
+			var add = function(x, y) {
+				return x + y;
+			};
+			return {
+				add: add　　　　
+			};
+		});
+
+		//加载非规范的模块,利用shim
+		require.config({　　　　
+			shim: {　　　　　　
+				'backbone': {　　　　　　　　
+					deps: ['underscore', 'jquery'],
+					　　　　　　　　exports: 'Backbone'　　　　　　
+				}　　　　
+			}　　
+		});
+
+		//require.js还提供一系列插件，实现一些特定的功能。
+		require(['domready!'], function(doc) {　　　　 
+			// called once the DOM is ready
+		　　});
+	</script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		// 当出现第一个ajax(甚至更多)仍然依赖上一个请求的时候，我们的代码就变成了一场灾难。 Promise的出现，原本是为了解决回调地狱的问题。
+		function fn(num) {
+			return new Promise(function(resolve, reject) {
+					if(typeof num == 'number') {
+						resolve();
+					} else {
+						reject();
+					}
+				})
+				.then(function() {
+					console.log('参数是一个number值');
+				})
+				.then(null, function() { //then(null, function() {}) 就等同于catch(function() {})
+					console.log('参数不是一个number值');
+				})
+		}
+
+		fn('hahha');
+		fn(1234);
+		//一点小总结
+		//then方法会返回一个新的promise,新对象状态不会受到前一个对象状态的影响。
+		//第一次then方法如果没有接收reject状态函数，默认继续执行下一个then的reject状态;
+		//如果当前then方法接收了reject状态,除非返回reject()，否则返回一个的状态 （默认resolve）
+		
+		
+	</script>
+
+</html>

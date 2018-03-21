@@ -44,5 +44,34 @@
 		cat.prototype = new animal();
 		console.log(new cat('wsscat', 'cute'));
 	</script>
+	<script type="text/javascript">
+		//需求：b想继承a，但是不想打印a中的log，同时想改写b继承过来的方法，并且不改变的a
+		//生成一个中间对象c
+		function Aa(){
+			console.log('aa被执行');
+			this.name = 'aa';
+		}
+		Aa.prototype.getName = function(){
+			console.log(this.name);
+		}
+		function Bb(){
+			console.log('bb被执行');
+			this.name = 'bb';
+		}
+		function Cc(){
+			this.name = 'cc';
+		} 
+		Cc.prototype = Aa.prototype;
+		Bb.prototype = new Cc();
+		var bb = new Bb();
+		Bb.prototype.getName = function(){
+			console.log('我被改写了');
+		};
+		
+		bb.getName();
+//		var aa = new Aa();
+//		aa.getName();
+//		console.log(bb);
+	</script>
 
 </html>
