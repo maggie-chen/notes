@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		// document与element上的函数为什么不是一个?
+		Document.prototype.getElementsByClassName === Element.prototype.getElementsByClassName //false
+		document.getElementsByClassName === document.body.getElementsByClassName //false
+		Document.prototype.cloneNode === Element.prototype.cloneNode//true
+
+		//因为getElementsByClassName并不是在Node原型上实现的，你可以自己打开控制台，然后输入document 以及 document.body，然后去找它们的原型一层一层往上找，你会发现他们的继承关系如下：
+		//document <- HTMLDocument <- HTMLDocumentPrototype <- DocumentPrototype <- NodePrototype <- EventTargetPrototype <- Object
+		//document.body <- HTMLBodyElementPrototype <- HTMLElementPrototype <- ElementPrototype <- NodePrototype <- EventTargetPrototype <- Object
+		//而你所说的getElementsByClassName方法并不是保存在了NodePrototype上，而是分别保存在了DocumentPrototype 和 ElementPrototype 上面；
+		//而cloneNode 方法是保存在了NodePrototype上面，所以才有你所看到的结果。
+		//至于为什么不将这个方法保存在NodePrototype上面，是因为还有其他类型的Node也是继承自这个原型的，而其他的Node可能是没有getElementsByClassName方法的，这个方法只有元素节点才有，因此不会将这个特有的方法保存到最原始的通用的原型上。而是选择在这个基础上再分一层，来保存每种类型的Node所特有的方法。
+	</script>
+
+</html>

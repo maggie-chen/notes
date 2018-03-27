@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		常见排序 冒泡排序（Bubble Sort）选择排序（Selection Sort） 插入排序（Insertion Sort） 快速排序（Quick Sort） 希尔排序（Shell Sort）
+	</body>
+	<script type="text/javascript">
+		//		冒泡排序JavaScript代码实现：
+		function bubbleSort(arr) {
+			var len = arr.length;
+			for(var i = 0; i < len; i++) {
+				for(var j = 0; j < len - 1 - i; j++) {
+					if(arr[j] > arr[j + 1]) { //相邻元素两两对比
+						var temp = arr[j + 1]; //元素交换
+						arr[j + 1] = arr[j];
+						arr[j] = temp;
+					}
+				}
+			}
+			return arr;
+		}
+		//		选择排序JavaScript代码实现：
+		function selectionSort(arr) {
+			var len = arr.length;
+			var minIndex, temp;
+			for(var i = 0; i < len - 1; i++) {
+				minIndex = i;
+				for(var j = i + 1; j < len; j++) {
+					if(arr[j] < arr[minIndex]) { //寻找最小的数
+						minIndex = j; //将最小数的索引保存
+					}
+				}
+				temp = arr[i];
+				arr[i] = arr[minIndex];
+				arr[minIndex] = temp;
+			}
+			return arr;
+		}
+		//		快速排序JavaScript代码实现：
+		function quickSort(arr, left, right) {
+			var len = arr.length,
+				partitionIndex,
+				left = typeof left != 'number' ? 0 : left,
+				right = typeof right != 'number' ? len - 1 : right;
+
+			if(left < right) {
+				partitionIndex = partition(arr, left, right);
+				quickSort(arr, left, partitionIndex - 1);
+				quickSort(arr, partitionIndex + 1, right);
+			}
+			return arr;
+		}
+
+		function partition(arr, left, right) { //分区操作
+			var pivot = left, //设定基准值（pivot）
+				index = pivot + 1;
+			for(var i = index; i <= right; i++) {
+				if(arr[i] < arr[pivot]) {
+					swap(arr, i, index);
+					index++;
+				}
+			}
+			swap(arr, pivot, index - 1);
+			return index - 1;
+		}
+
+		function swap(arr, i, j) {
+			var temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
+		}
+	</script>
+
+</html>

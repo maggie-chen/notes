@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//单例模式声明一个命名空间，它生成一个唯一的全局变量，一个命名空间，可以用声明对象的方式(字面量对象)来声明：
+		var mapleTao = {
+			name: "mapleTao",
+			init: function() {
+				console.log(this.name)
+			}
+		};
+	</script>
+	<script type="text/javascript">
+		// 确保单例具有唯一性
+		function Construct() {
+			// 确保只有单例
+			if(Construct.unique !== undefined) {
+				return Construct.unique;
+			}
+			// 其他代码
+			this.name = "NYF";
+			this.age = "24";
+			Construct.unique = this;
+		}
+		var t1 = new Construct();
+		var t2 = new Construct();
+		console.log(t1);
+		console.log(t2);
+		console.log(t1==t2); //true
+	</script>
+
+</html>

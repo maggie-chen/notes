@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
+
 	<body>
 	</body>
 	<script type="text/javascript">
-		
+		//watch 和 computed区别
+		//1.computed优点： 
+		//在数据未发生变化时，优先读取缓存。computed 计算属性只有在相关的数据发生变化时才会改变要计算的属性，当相关数据没有变化是，它会读取缓存。而不必想 motheds方法 和 watch 方法是的每次都去执行函数。
+		//2.虽然计算属性在大多数情况下是非常适合的，但是在有些情况下我们需要自定义一个watcher，在数据变化时来执行异步操作，这时watch是非常有用的。
 	</script>
+
 </html>
