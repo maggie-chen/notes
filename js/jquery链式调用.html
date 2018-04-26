@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 链式操作是通过对象上的方法最后 return this 把对象再返回回来，对象就可以继续其他调用方法
+
+    //定义一个JS类 
+    function Demo() {}
+    //扩展它的prototype 
+    Demo.prototype = {
+        setName: function (name) {
+            this.name = name;
+            return this;
+        },
+        getName: function () {
+            return this.name;
+        },
+        setAge: function (age) {
+            this.age = age;
+            return this;
+        }
+    };
+    ////工厂函数 
+    function D() {
+        return new Demo();
+    }
+    //去实现可链式的调用 
+    D().setName("CJ").setAge(18).setName();
+
+    // 链式操作的好处
+    // 节省代码量，代码看起来更优雅。
+    // 解决了异步编程模型的执行流程不清晰的问题
+</script>
+
+</html>

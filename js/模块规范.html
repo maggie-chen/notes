@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // CommonJS (同步加载模块) (例如：node.js)
+    // 必须通过  module.exports导出对外的变量或接口，通过require()来导入其他模块的输出到当前模块。
+
+    // moduleA.js  
+    module.exports = function (value) {
+        return value * 2;
+    }
+    // moduleB.js  
+    var multiplyBy2 = require('./moduleA');
+    var result = multiplyBy2(4);
+
+    // 优点：
+    // 服务器端便于重用
+    // NPM中已经将近20w个模块包
+    // 简单并容易使用
+    // 缺点：
+    // 同步的模块方式不适合不适合在浏览器环境中， 同步意味着阻塞加载， 浏览器资源是异步加载的
+    // 不能非阻塞的并行加载多个模块
+</script>
+<script>
+    // ES2015
+    // 使用 export 命令规定对外接口
+    export function area(radius) {
+        return Math.PI * radius * radius;
+    }
+    // import 命令使用大括号的形式加载模块对外的接口
+    import {
+        area,
+        circumference
+    } from './hangge';
+</script>
+<script>
+    // AMD 异步模块 (例如：require.js)
+    // 只有一个主要接口 define(id,dependencies,factory)，它要在声明模块的时候指定所有的依赖dependencies，并且还要当做形参传到factory中，对于依赖的模块提前执行，依赖前置
+    define("module", ["dep1", "dep2"], function (d1, d2) {
+        return someExportedValue;
+    });
+    require(["module", "../file"], function (module, file) { /* ... */ });
+
+    // 优点：
+    // 适合在浏览器环境异步加载
+    // 并行加载多个模块
+    // 缺点：
+    // 提高开发成本， 代码阅读和书写比较困难
+    // 不符合通用的模块思维方式， 是一种妥协的实现
+</script>
+<script>
+    // CMD  和AMD相似 (例如：sea.js)
+    define(function (require, exports, module) {
+        var $ = require('jquery');
+        var Spinning = require('./spinning');
+        exports.doSomething = {}
+        module.exports = {}
+    })
+    // 优点：
+    // 依赖就近， 延迟执行
+    // 很容易在node中运行
+    // 缺点：
+    // 依赖SPM打包， 模块的加载逻辑偏重
+</script>
+
+</html>

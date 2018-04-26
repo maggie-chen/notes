@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // module.exports与exports，export与export default之间的关系和区别
+
+    // CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。require方法用于加载模块
+    module.exports.x = x;
+    var example = require('./example.js');
+
+    // 为了方便，Node为每个模块提供一个exports变量，指向module.exports。这等同在每个模块头部，有一行这样的命令。
+    var exports = module.exports;
+    // 不能直接将exports变量指向一个值，因为这样等于切断了exports与module.exports的联系。
+</script>
+
+<script>
+    // ES6使用 export 和 import 来导出、导入模块。
+    var firstName = 'Michael';
+    var lastName = 'Jackson';
+    var year = 1958;
+
+    export {
+        firstName,
+        lastName,
+        year
+    };
+    // 使用export default命令，为模块指定默认输出。
+    export default function () {
+        console.log('foo');
+    }
+</script>
+
+</html>

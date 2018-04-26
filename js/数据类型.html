@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>数据类型</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
     // js的基本数据类型，也叫原始类型
@@ -15,5 +17,25 @@
 
     // 引用数据类型
     // object array 等
+
+    // es6 symbol
+    // 表示独一无二的值，Symbol最大的用途是用来定义对象的唯一属性名。
+
+    var symbol1 = Symbol();
+    var symbol2 = Symbol("Alice");
+    console.log(symbol1, symbol2) // 输出：Symbol() Symbol(Alice) 
+
+    console.log(typeof Symbol("Alice")) // 输出：symbol
+
+    console.log(Symbol() === Symbol()); // 输出：false  
+
+    var symbol = new Symbol(); // 报错：TypeError   Symbol不是一个构造函数，如果用new Symbol会报错（Symbol是一个原始类型的值，不是对象）。 
+
+    var symbol = Symbol();
+    symbol.name = "Alice"; // 报错：TypeError   由于Symbol值不是对象，所以不能添加属性。
+
+    console.log(Symbol('Alice') + "Bruce"); // 报错   Symbol值不能与其他类型的值进行运算。
+    
 </script>
+
 </html>
