@@ -31,5 +31,14 @@
     fn.call(obj, 100, 10); // 130
     fn.apply(obj, [20, 10]); // 50
 </script>
+<script>
+    // bind封装
+    Function.prototype.bind = function (context) {
+        var that = this;
+        return function () {
+            return that.call(context, arguments);
+        }
+    }
+</script>
 
 </html>

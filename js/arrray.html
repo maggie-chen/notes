@@ -9,9 +9,17 @@
 <body>
 
 </body>
+<script>
+	[]==[] //false 
+	// 两个引用值指向不同的内存，不是同一个对象。
+	[]==![] //true
+ // ![]为false  
+
+</script>
 <script type="text/javascript">
 	// 乱序
 	var arr1 = [1, 2, 3, 4];
+
 	function render(argument) {
 		return arr1.sort(function () {
 			return Math.random() - 0.5
@@ -23,7 +31,7 @@
 <script type="text/javascript">
 	// 最大值
 	var arr2 = [1, 5, 1, 7, 5, 9];
-	console.log(Math.max(...arr2))// 9 
+	console.log(Math.max(...arr2)) // 9
 </script>
 
 <script type="text/javascript">
@@ -53,9 +61,29 @@
 </script>
 
 <script type="text/javascript">
-	var arr4 = [[1,2],[3,4]];
+	var arr4 = [
+		[1, 2],
+		[3, 4]
+	];
 	// 想要输出[1,2,3,4]
 	console.log(arr4.concat([]));
+</script>
+<script>
+	// sum(1, 2)  sum(1)(2)
+	function sum(x) {
+		var s = x;
+		var tmp = function (y) {
+			s = s + y;
+			return tmp;
+		};
+		tmp.toString = function () {
+			return s;
+		};
+		return tmp;
+	}
+	console.log(sum(1)(2)); // f 3
+	// 第一次调用为了闭包返回tmp函数
+	// console.log 实际调用的是tmp.toString的方法，所以改写
 </script>
 
 </html>

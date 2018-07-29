@@ -35,7 +35,24 @@
     symbol.name = "Alice"; // 报错：TypeError   由于Symbol值不是对象，所以不能添加属性。
 
     console.log(Symbol('Alice') + "Bruce"); // 报错   Symbol值不能与其他类型的值进行运算。
-    
+</script>
+<script>
+    // 判断数组
+    var ary = [1, 23, 4];
+    console.log(ary instanceof Array) //true; instanceof用来检测前者是否是后者的实例
+    console.log(ary.__proto__.constructor == Array); //true //ary的
+    console.log(ary.constructor == Array) //true 这两段代码是一样的
+    console.log(Object.prototype.toString.call(o) == '[object Array]'); //true
+</script>
+<script>
+    console.log([] == []) //false
+    // []相当于声明了两个不同的数组，而数组是引用类型的值，引用的是地址，比较的是内存中存的是否是同一个对象，虽然都是两个空数组，但是引用地址不一样，结果当然为false。
+    console.log([] == ![]) //true
+    //经历的过程：x==y(http://www.ecma-international.org/ecma-262/5.1)
+    // 1.![] !的优先级高于==， ! 执行 ToBoolean(GetValue(expr)). ，ToBoolean：（Object：true） 所以![] 为 false , 此时 [] == false
+    // 2.遵循If Type(y) is Boolean, return the result of the comparison x == ToNumber(y). ToNumber(false) 为 0 ,此时 [] == 0
+    // 在此处因为 [] 是对象，比较过程走分支 9，依「ToPrimitive([]) == 0」比较。ToPrimitive 默认是调用 toString 方法的（依 8.2.8），于是 ToPrimitice([]) 等于空字符串。 ,此时 '' == 0
+    // 按照 11.9.3 中的定义会依分支 5 比较 「ToNumber('')==0」，ToNumber('') 依 9.3.1 等于 0，所以结果为 true。
 </script>
 
 </html>

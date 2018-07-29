@@ -1,51 +1,72 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
 
-	<body>
-	</body>
-	<script type="text/javascript">
-		// 闭包就是能够读取其他函数内部变量的函数。
-		// 闭包的应用场景
-		// 除了面试，在实践中，闭包有两个非常重要的应用场景。分别是模块化与柯里化。
-		var fn = null;
+<body>
+</body>
+<script type="text/javascript">
+	// 闭包就是能够读取其他函数内部变量的函数。
+	// 闭包的应用场景
+	// 除了面试，在实践中，闭包有两个非常重要的应用场景。分别是模块化与柯里化。
+	var fn = null;
 
-		function foo() {
-			var a = 2;
+	function foo() {
+		var a = 2;
 
-			function innnerFoo() {
-				console.log(a);
-			}
-			fn = innnerFoo; // 将 innnerFoo的引用，赋值给全局变量中的fn
+		function innnerFoo() {
+			console.log(a);
+		}
+		fn = innnerFoo; // 将 innnerFoo的引用，赋值给全局变量中的fn
+	}
+
+	function bar() {
+		fn(); // 此处的保留的innerFoo的引用
+	}
+
+	foo();
+	bar(); // 2
+
+	// (function () {
+	// 	var a = 10;
+	// 	var b = 20;
+
+	// 	function add(num1, num2) {
+	// 		var num1 = !!num1 ? num1 : a;
+	// 		var num2 = !!num2 ? num2 : b;
+
+	// 		return num1 + num2;
+	// 	}
+
+	// 	window.add = add;
+	// })();
+
+	// add(10, 20);
+
+	// 柯里化
+	// 又称部分求值（Partial Evaluation），简单来说就是只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。
+	function add() {
+		console.log('进入add');
+		var args = Array.prototype.slice.call(arguments);
+
+		var fn = function () {
+			var arg_fn = Array.prototype.slice.call(arguments);
+			console.log('调用fn');
+			return add.apply(null, args.concat(arg_fn));
 		}
 
-		function bar() {
-			fn(); // 此处的保留的innerFoo的引用
+		fn.valueOf = function () {
+			console.log('调用valueOf');
+			return args.reduce(function (a, b) {
+				return a + b;
+			})
 		}
 
-		foo();
-		bar(); // 2
-		
-		
-		(function() {
-			var a = 10;
-			var b = 20;
-
-			function add(num1, num2) {
-				var num1 = !!num1 ? num1 : a;
-				var num2 = !!num2 ? num2 : b;
-
-				return num1 + num2;
-			}
-
-			window.add = add;
-		})();
-
-		add(10, 20);
-	</script>
+		return fn;
+	}
+</script>
 
 </html>
