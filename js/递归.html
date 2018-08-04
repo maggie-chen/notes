@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
     var A = {
-            value: 1,
+        value: 1,
+        items: [{
+            value: 2,
             items: [{
-                value: 2,
-                items: [{
-                    value: 2
-                }, {
-                    value: 3
-                }]
+                value: 2
+            }, {
+                value: 3
             }]
-        }
-        function render(obj, n) {
-            if (n == undefined) n = 0;
-            n+=obj.value;
+        }]
+    }
+
+    function render(obj, n) {
+        if (n == undefined) n = 0;
+        n += obj.value;
+        if (obj.items) {
             var l = obj.items.length;
             if (l > 0) {
                 for (var i = 0; i < l; i++) {
@@ -32,8 +36,57 @@
             } else {
                 return n;
             }
-
         }
-        console.log(render(A));
+    }
+    console.log(render(A));
 </script>
+<script>
+    //clone
+    //克隆分浅克隆和深克隆
+    //浅克隆：
+    // 基础数据类型：直接克隆出新的
+    // 引用数据类型：克隆引用地址，新对象改变，旧对象也会改变
+    //深克隆：（克隆引用数据类型）
+    // 利用递归
+    util = {}
+    util.deepClone = function (obj) { //深度克隆
+        var result;
+        var oClass = isClass(obj);
+        if (oClass === "Object") {
+            result = {};
+        } else if (oClass === "Array") {
+            result = [];
+        } else {
+            return obj;
+        }
+        for (var key in obj) {
+            var copy = obj[key];
+            if (isClass(copy) == "Object") {
+                result[key] = arguments.callee(copy); //递归调用
+            } else if (isClass(copy) == "Array") {
+                result[key] = arguments.callee(copy);
+            } else {
+                result[key] = obj[key];
+            }
+        }
+        return result;
+    }
+
+    function isClass(o) {
+        if (o === null) return "Null";
+        if (o === undefined) return "Undefined";
+        return Object.prototype.toString.call(o).slice(8, -1);
+    }
+    let old = {
+        a: {
+            a_a: [1, 2, 3]
+        },
+        b: 2
+    }
+    let old_new = util.deepClone(old)
+    old_new.b = 3
+    console.log(old_new)
+    console.log(old)
+</script>
+
 </html>
