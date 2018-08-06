@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .left,
+        .main,
+        .right {
+            float: left;
+            min-height: 130px;
+            text-align: center;
+        }
+        
+        .left {
+            background: green;
+            width: 100px;
+            margin-left: -100%;
+        }
+        
+        .main {
+            background: blue;
+            width: 100%;
+        }
+        
+        .right {
+            background: red;
+            width: 120px;
+            margin-left: -120px;
+        }
+        
+        .content {
+            margin: 0 120px 0 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="content">main</div>
+        </div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+</body>
+<script type="text/javascript">
+    // 1-- 左边定宽，右边自适应布局的几种方法
+    // https://www.cnblogs.com/wx1993/p/6727653.html
+
+    //  2-- 圣杯布局 & 双飞翼布局
+    // https://blog.csdn.net/wangchengiii/article/details/77926868
+</script>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 延迟500打印
+    function timeout(ms) {
+        return new Promise(function (reslove, reject) {
+            console.log(reslove)
+            return setTimeout(reslove, ms)
+        })
+    }
+    async function asyncPrint(value, ms) {
+        await timeout(ms)
+        console.log(value)
+    }
+
+    asyncPrint('hello world', 500).then(console.log('aa'))
+</script>
+
+</html>

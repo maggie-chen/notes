@@ -55,5 +55,13 @@
     // 在此处因为 [] 是对象，比较过程走分支 9，依「ToPrimitive([]) == 0」比较。ToPrimitive 默认是调用 toString 方法的（依 8.2.8），于是 ToPrimitice([]) 等于空字符串。 ,此时 '' == 0
     // 按照 11.9.3 中的定义会依分支 5 比较 「ToNumber('')==0」，ToNumber('') 依 9.3.1 等于 0，所以结果为 true。
 </script>
+<script>
+    // null undefined
+    // null 为 为定义的对象，指向一个空对象
+    // 判断：if (!exp && typeof exp != "undefined" && exp != 0)
+
+    // undefined 指为定义的变量
+    // 判断：if (typeof exp == "undefined")
+</script>
 
 </html>

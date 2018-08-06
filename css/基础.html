@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
     // box - sizing
@@ -22,10 +24,18 @@
     // relative 相对定位（相对本身位置） 不改变页面布局的前提下调整元素位置
     // absolute 绝对定位   指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置
     // fixed  绝对定位 通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置，在屏幕滚动时不会改变
-    
 </script>
 <script>
     // 权重
     // 元素 1  class或者属性 10   id 100   行内 1000  !important 最高
 </script>
+<script>
+    // z-index
+    // z-index 属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。 
+    // 1. 对于同级元素，默认(或position:static)情况下文档流后面的元素会覆盖前面的。 
+    // 2. 对于同级元素，position不为static且z-index存在的情况下z-index大的元素会覆盖z-index小的元素，即z-index越大优先级越高。
+    // 3. IE6/7下position不为static，且z-index不存在时z-index为0，除此之外的浏览器z-index为auto。 
+    // 4. z-index为auto的元素不参与层级关系的比较，由向上遍历至此且z-index不为auto的元素来参与比较。
+</script>
+
 </html>

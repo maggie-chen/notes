@@ -67,6 +67,21 @@
 
 		return fn;
 	}
+	// sum(1, 2)  sum(1)(2)
+	function sum(x) {
+		var s = x;
+		var tmp = function (y) {
+			s = s + y;
+			return tmp;
+		};
+		tmp.toString = function () {
+			return s;
+		};
+		return tmp;
+	}
+	console.log(sum(1)(2)); // f 3
+	// 第一次调用为了闭包返回tmp函数
+	// console.log 实际调用的是tmp.toString的方法，所以改写
 </script>
 
 </html>
